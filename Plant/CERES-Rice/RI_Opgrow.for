@@ -249,7 +249,9 @@ C-----------------------------------------------------------------------
            SLA = LAI * 10000.0 / WTLF
          ELSE
            SLA = 0.0
-        ENDIF
+         ENDIF
+         
+      WRITE(*,*) 'SLAPLTGRO=',SLA, 'LeafWT=',LFWT, 'LAI=',LAI       
 
         SEEDNO = GPSM
 !        PODWT  = PANWT
