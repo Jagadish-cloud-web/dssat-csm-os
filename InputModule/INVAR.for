@@ -530,8 +530,8 @@ C        Branch to menu choice
          END SELECT
 
 !=======================================================================
-!     Rice
-      CASE ('RICER')
+!     Rice, Perennial rice
+      CASE ('RICER','RNCER')
         WRITE (*,5800) P1,P2R,P5,P2O,G1,G2,G3,G4
 5800    FORMAT (12X,'0. End of changes ',//,
      1  12X,'1. P1..(10.00 -  800.0)..........................[',F7.1,/,

@@ -888,7 +888,7 @@ C-----------------------------------------------------------------------
       IF (ISWPOT /= 'N') THEN
 !       Check for validity of K model for this crop
         SELECT CASE(MODEL(1:5))
-        CASE('MZCER','RICER')
+        CASE('MZCER','RICER','RNCER')
 !          SELECT CASE(CONTROL % CROP)
 !          CASE('MZ','RI') 
 !!           Potassium model has been enabled and tested for these crops, do nothing

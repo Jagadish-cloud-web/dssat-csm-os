@@ -815,8 +815,8 @@ c          WRITE (HEADER(I),'(2F6.0,F6.2)') PHINT, LLIFA, STFR
          WRITE (HEADER(I),1005) PD,P2,TC; I=I+1
 
 !-----------------------------------------------------------------------
-!     Rice
-      CASE ('RICER')
+!     Rice, Perennial rice
+      CASE ('RICER','RNCER')
 !      ELSEIF (INDEX ('RI',CROP) .GT. 0) THEN
          WRITE (HEADER(I), 906) P1,P2R,P5,P2O; I=I+1
          WRITE (HEADER(I),1006) G1,G2,G3,THOT,TCLDP,TCLDF; I=I+1

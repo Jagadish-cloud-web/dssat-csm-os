@@ -2129,7 +2129,7 @@ C=======================================================================
         CropStatus = 39
       ENDIF
 C-----------------------------------------------------------------------
-      IF (IHARI .EQ. 'M' .OR. IHARI .EQ. 'P') THEN          ! P for perennial crops
+      IF (IHARI .EQ. 'M') THEN          
         DAP   = MAX(0,TIMDIF(YRPLT,YRDOY))
 
         !Message to WARNING.OUT

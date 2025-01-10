@@ -47,7 +47,7 @@ C  04/01/2004 CHP/US New PHEFAC calculation
 !                 unused variables, shorten lines. 
 C=======================================================================
 
-      SUBROUTINE RICE(CONTROL, ISWITCH,
+      SUBROUTINE RN_RICE(CONTROL, ISWITCH,
      &    CO2, DAYL, EOP, FLOODWAT, HARVFRAC, NH4, NO3,   !Input
      &    SKi_Avail, SPi_AVAIL,                           !Input
      &    SOILPROP, SRAD, ST, SW, TMAX, TMIN, TRWUP,      !Input
@@ -203,7 +203,7 @@ C-----------------------------------------------------------------------
       YRSOW = YRPLT
 
       !Initialize phenology
-      CALL RI_PHENOL (CONTROL, ISWITCH, 
+      CALL RN_PHENOL (CONTROL, ISWITCH, 
      &    AGEFAC, BIOMAS, DAYL, LEAFNO, NSTRES, PHEFAC,   !Input
      &    PHINT, SDEPTH, SOILPROP, SRAD, SW, DUL, SWFAC,  !Input
      &    TGROGRN, TILNO, TMAX, TMIN, TWILEN, TURFAC,     !Input
@@ -223,7 +223,7 @@ C-----------------------------------------------------------------------
      &    FLOODN, RTWT,                                   !I/O
      &    RLV, RTDEP, SDEPTH)                             !Output
 
-      CALL RI_GROSUB (CONTROL, ISWITCH,                  !Input 
+      CALL RN_GROSUB (CONTROL, ISWITCH,                  !Input 
      &    CO2, CDTT_TP, CUMDTT, DTT, FERTILE, FIELD,      !Input
      &    FLOOD, FracRts, ISTAGE, ITRANS, LTRANS,         !Input
      &    NEW_PHASE, NH4, NO3, P1, P1T, P3, P4, PHEFAC,   !Input     
@@ -331,7 +331,7 @@ C-----------------------------------------------------------------------
 
       IF (YRPLT .NE. 9999999) THEN
         IF (YRDOY .EQ. YRPLT .OR. ISTAGE .NE. 7) THEN
-          CALL RI_PHENOL (CONTROL, ISWITCH, 
+          CALL RN_PHENOL (CONTROL, ISWITCH, 
      &    AGEFAC, BIOMAS, DAYL, LEAFNO, NSTRES, PHEFAC,   !Input
      &    PHINT, SDEPTH, SOILPROP, SRAD, SW, DUL, SWFAC,  !Input  ! WP - Added DUL after SW
      &    TGROGRN, TILNO, TMAX, TMIN, TWILEN, TURFAC,     !Input
@@ -351,7 +351,7 @@ C--------------------------------------------------------------
 C        Call Growth and Root Growth Routines
 C--------------------------------------------------------------
 
-      CALL RI_GROSUB (CONTROL, ISWITCH,                   !Input  
+      CALL RN_GROSUB (CONTROL, ISWITCH,                   !Input  
      &    CO2, CDTT_TP, CUMDTT, DTT, FERTILE, FIELD,      !Input
      &    FLOOD, FracRts, ISTAGE, ITRANS, LTRANS,         !Input
      &    NEW_PHASE, NH4, NO3, P1, P1T, P3, P4, PHEFAC,   !Input     
@@ -384,7 +384,7 @@ C--------------------------------------------------------------
 !***********************************************************************
       ELSEIF (DYNAMIC .EQ. OUTPUT .OR. DYNAMIC .EQ. SEASEND) THEN
 C-----------------------------------------------------------------------
-      CALL RI_GROSUB (CONTROL, ISWITCH,                   !Input  
+      CALL RN_GROSUB (CONTROL, ISWITCH,                   !Input  
      &    CO2, CDTT_TP, CUMDTT, DTT, FERTILE, FIELD,      !Input
      &    FLOOD, FracRts, ISTAGE, ITRANS, LTRANS,         !Input
      &    NEW_PHASE, NH4, NO3, P1, P1T, P3, P4, PHEFAC,   !Input     
@@ -458,4 +458,4 @@ C-----------------------------------------------------------------------
 
 !***********************************************************************
       RETURN
-      END SUBROUTINE RICE
+      END SUBROUTINE RN_RICE

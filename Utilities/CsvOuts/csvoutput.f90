@@ -2319,7 +2319,7 @@ Subroutine CsvOutputs(CropModel, numelem, nlayers)
                  Call ListtofileMZCER(nlayers)        ! plantgro.csv
                  Call ListtofilePlNMzCer              ! plantn.csv
                  Call ListtofileEvOpsum               ! evaluate.csv
-             Case('RICER')
+             Case('RICER','RNCER')
                  Call ListtofileRICER(nlayers)        ! plantgro.csv
 !                Call ListtofilePlNMzCer              ! plantn.csv
 !                Call ListtofileEvOpsum               ! evaluate.csv

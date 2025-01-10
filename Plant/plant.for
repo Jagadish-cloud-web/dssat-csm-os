@@ -576,7 +576,26 @@ C         Variables to run CASUPRO from Alt_PLANT.  FSR 07-23-03
         ENDIF
 
 !     -------------------------------------------------
-!     CERES-TEFF
+    !     -------------------------------------------------
+!     Perennial Rice
+      CASE('RNCER')
+        CALL RN_RICE(CONTROL, ISWITCH,
+     &    CO2, DAYL, EOP, FLOODWAT, HARVFRAC, NH4, NO3,   !Input
+     &    SKi_Avail, SPi_AVAIL,                           !Input
+     &    SOILPROP, SRAD, ST, SW, TMAX, TMIN, TRWUP,      !Input
+     &    TWILEN, YRPLT,                                  !Input
+     &    FLOODN,                                         !I/O
+     &    CANHT, HARVRES, XLAI, KUptake, MDATE, NSTRES,   !Output
+     &    PORMIN, PUptake, RWUEP1, RWUMX, CropStatus,     !Output
+     &    RLV, SENESCE, STGDOY, FracRts, UNH4, UNO3)      !Output
+
+        IF (DYNAMIC .EQ. INTEGR) THEN
+          XHLAI = XLAI
+        ENDIF
+
+!     -------------------------------------------------    
+
+        !     CERES-TEFF
       CASE('TFCER')
         CALL TEFF(CONTROL, ISWITCH,
      &    CO2, DAYL, EOP, FLOODWAT, HARVFRAC, NH4, NO3,   !Input

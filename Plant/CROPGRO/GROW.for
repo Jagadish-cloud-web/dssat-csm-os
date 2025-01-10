@@ -1223,7 +1223,7 @@ C=======================================================================
         CropStatus = 39
       ENDIF
 C-----------------------------------------------------------------------
-      IF (IHARI == 'M') THEN
+      IF (IHARI == 'M') THEN  
         DAP   = MAX(0,TIMDIF(YRPLT,YRDOY))
 
         !Message to WARNING.OUT

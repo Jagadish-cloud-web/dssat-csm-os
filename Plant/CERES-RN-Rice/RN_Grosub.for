@@ -1,5 +1,5 @@
 C=======================================================================
-C  RI_GROSUB, Subroutine
+C  RN_GROSUB, Subroutine
 C
 C  Determines rice growth
 C-----------------------------------------------------------------------
@@ -19,7 +19,7 @@ C           when false then growth without stress as in seedbed
 C  LTRANS : True if transplanted (itrans=2 or 3)
 C=======================================================================
 
-      SUBROUTINE RI_GROSUB (CONTROL, ISWITCH,
+      SUBROUTINE RN_GROSUB (CONTROL, ISWITCH,
      &    CO2, CDTT_TP, CUMDTT, DTT, FERTILE, FIELD,      !Input
      &    FLOOD, FracRts, ISTAGE, ITRANS, LTRANS,         !Input
      &    NEW_PHASE, NH4, NO3, P1, P1T, P3, P4, PHEFAC,   !Input     
@@ -599,8 +599,7 @@ CCCCC-PW
       ENDIF
 
 !*********************************************************************** WP - Initialization for Perenial Rice control
-      IF (ISTAGE .EQ. 20 .AND. REGROW .LT. MAXREGROW .AND. 
-     & IHARI .EQ. 'P') THEN
+      IF (ISTAGE .EQ. 20 .AND. REGROW .LT. MAXREGROW) THEN
 !          REGROW = REGROW + 1
           ISTAGE = 0      !Before End of Juvenile stage
           CUMDTT = 402.5
@@ -1570,7 +1569,7 @@ C-----------------------------------------------------------------------
 !***********************************************************************
       ENDIF
       RETURN
-      END SUBROUTINE RI_GROSUB
+      END SUBROUTINE RN_GROSUB
 C=======================================================================
 
 C=======================================================================
@@ -1582,7 +1581,7 @@ C  Revision history
 C
 C  05/07/2002 CHP Written
 C-----------------------------------------------------------------------
-C  Called : RI_GROSUB
+C  Called : RN_GROSUB
 C=======================================================================
       SUBROUTINE PlantInit(
      &    GRAINN, NPPH, PLPH, ROOTN, STOVN,               !Input

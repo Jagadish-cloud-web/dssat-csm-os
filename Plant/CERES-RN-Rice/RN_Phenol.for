@@ -1,5 +1,5 @@
 C=======================================================================
-C  RI_PHENOL, Subroutine
+C  RN_PHENOL, Subroutine
 C
 C  Determines phenological stage
 C-----------------------------------------------------------------------
@@ -15,7 +15,7 @@ C  02/19/2003 CHP Converted dates to YRDOY format
 !  06/15/2022 CHP Added CropStatus
 C=======================================================================
 
-      SUBROUTINE RI_PHENOL (CONTROL, ISWITCH, 
+      SUBROUTINE RN_PHENOL (CONTROL, ISWITCH, 
      &    AGEFAC, BIOMAS, DAYL, LEAFNO, NSTRES, PHEFAC,   !Input
      &    PHINT, SDEPTH, SOILPROP, SRAD, SW, DUL, SWFAC,  !Input  WP - Added DUL
      &    TGROGRN, TILNO, TMAX, TMIN, TWILEN, TURFAC,     !Input
@@ -485,7 +485,7 @@ C=======================================================================
      &        (SW_RATE * DUL(1))) THEN
                ISTAGE = 1            
                REGROW = REGROW + 1
-!               WRITE(*,*) 'ISTAGE=',ISTAGE, 'Regrow=',REGROW
+               WRITE(*,*) 'ISTAGE=',ISTAGE, 'Regrow=',REGROW
             ELSE
                RETURN
             ENDIF
@@ -886,7 +886,7 @@ C-----------------------------------------------------------------------
 C     Format Strings
 C-----------------------------------------------------------------------
 
-      END SUBROUTINE RI_PHENOL
+      END SUBROUTINE RN_PHENOL
 C=======================================================================
 
 
@@ -1097,7 +1097,7 @@ C  Revision history
 C
 C  05/07/2002 CHP Written
 C-----------------------------------------------------------------------
-C  Called : RI_PHENOL
+C  Called : PR_PHENOL
 C=======================================================================
 
       SUBROUTINE StnameFill(STNAME)
