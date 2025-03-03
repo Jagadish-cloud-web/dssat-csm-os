@@ -114,10 +114,7 @@ C-----------------------------------------------------------------------
 !     Added for K model   
       REAL KUptake(NL), SKi_AVAIL(NL), KSTRES
 
-! For Perenial Rice control   ! WP 5/18/2011
-      REAL RHzWT, RHzDTT
-      INTEGER REGROW
-! End definitions for Perenial Rice control
+
  
 C-----------------------------------------------------------------------
 C     Initialize
@@ -184,12 +181,6 @@ C-----------------------------------------------------------------------
 !     CHP 5/18/2011
       MDATE      = -99      
 
-! For Perenial Rice control         ! WP 5/18/2011
-      RHzWT = 0.0
-      RHzDTT = 0.0
-      REGROW = 0
-! End initialization for Perenial Rice control
-
 !     Temporary -- until P is integrated with this crop module  US 4/2/08
 !     PConc_Shut = 0.0
 !      PConc_Root = 0.0
@@ -205,16 +196,16 @@ C-----------------------------------------------------------------------
       !Initialize phenology
       CALL RI_PHENOL (CONTROL, ISWITCH, 
      &    AGEFAC, BIOMAS, DAYL, LEAFNO, NSTRES, PHEFAC,   !Input
-     &    PHINT, SDEPTH, SOILPROP, SRAD, SW, DUL, SWFAC,  !Input
+     &    PHINT, SDEPTH, SOILPROP, SRAD, SW, SWFAC,       !Input
      &    TGROGRN, TILNO, TMAX, TMIN, TWILEN, TURFAC,     !Input
-     &    YRPLT,FLOODWAT, LAI, RHzWT, RHzDTT,             !Input
+     &    YRPLT,FLOODWAT, LAI,                            !Input
      &    CUMDTT, EMAT, ISDATE, PLANTS, RTDEP, YRSOW,     !I/O
      &    CDTT_TP, DTT, FERTILE, FIELD, ISTAGE,           !Output
      &    ITRANS, LTRANS, MDATE, NDAT, NEW_PHASE, P1, P1T,!Output
      &    P3, P4, SDTT_TP, SEEDNI, SI3, STGDOY, STNAME,   !Output
      &    STRCOLD, STRESSW, STRHEAT, SUMDTT, TAGE,        !Output
      &    TBASE, TF_GRO, TSGRWT, WSTRES, XSTAGE, XST_TP,  !Output
-     &    SeedFrac, VegFrac, CropStatus, REGROW)          !Output
+     &    SeedFrac, VegFrac, CropStatus)                  !Output
 
       CALL RI_ROOTGR (CONTROL, 
      &    DTT, FLOOD, GRORT, ISWNIT, ISWWAT,              !Input
@@ -232,7 +223,7 @@ C-----------------------------------------------------------------------
      &    STRCOLD, STRESSW, STRHEAT, SUMDTT, SW, SWFAC,   !Input
      &    TAGE, TBASE, TF_GRO, TMAX, TMIN, TSGRWT,        !Input
      &    TURFAC, VegFrac, WSTRES, XSTAGE, XST_TP, YRPLT, !Input
-     &    YRSOW, REGROW,                                  !Input     ! US/JT- added REGROW
+     &    YRSOW,                                          !Input
      &    EMAT, FLOODN, PLANTS, RTWT,                     !I/O
      &    AGEFAC, APTNUP, BIOMAS, CANNAA, CANWAA, DYIELD, !Output
      &    GNUP, GPP, GPSM, GRAINN, GRNWT, GRORT,          !Output
@@ -244,8 +235,7 @@ C-----------------------------------------------------------------------
      &    RWUMX, SEEDNI, SEEDRV, SENESCE,                 !Output
      &    SKERWT, STMWT, STMWTO,                          !Output
      &    STOVER, STOVN, TANC, TGROGRN, TILNO, TOTNUP,    !Output
-     &    CumNUptake, UNH4, UNO3, WTLF, XGNP,             !Output
-     &    MDATE, RHzWT, RHzDTT)                           !Output       ! WP - Added MDATE, RHzWT, RHzDTT
+     &    CumNUptake, UNH4, UNO3, WTLF, XGNP)             !Output
      
       CALL RI_OPGROW (CONTROL, ISWITCH, SOILPROP,
      &    BIOMAS, GPP, GPSM, GRAINN, GRNWT, ISTAGE, LAI,  
@@ -333,16 +323,16 @@ C-----------------------------------------------------------------------
         IF (YRDOY .EQ. YRPLT .OR. ISTAGE .NE. 7) THEN
           CALL RI_PHENOL (CONTROL, ISWITCH, 
      &    AGEFAC, BIOMAS, DAYL, LEAFNO, NSTRES, PHEFAC,   !Input
-     &    PHINT, SDEPTH, SOILPROP, SRAD, SW, DUL, SWFAC,  !Input  ! WP - Added DUL after SW
+     &    PHINT, SDEPTH, SOILPROP, SRAD, SW, SWFAC,       !Input
      &    TGROGRN, TILNO, TMAX, TMIN, TWILEN, TURFAC,     !Input
-     &    YRPLT,FLOODWAT, LAI, RHzWT, RHzDTT,             !Input  ! WP - Added RHzWT, RHzDTT
+     &    YRPLT,FLOODWAT, LAI,                            !Input
      &    CUMDTT, EMAT, ISDATE, PLANTS, RTDEP, YRSOW,     !I/O
      &    CDTT_TP, DTT, FERTILE, FIELD, ISTAGE,           !Output
      &    ITRANS, LTRANS, MDATE, NDAT, NEW_PHASE, P1, P1T,!Output
      &    P3, P4, SDTT_TP, SEEDNI, SI3, STGDOY, STNAME,   !Output
      &    STRCOLD, STRESSW, STRHEAT, SUMDTT, TAGE,        !Output
      &    TBASE, TF_GRO, TSGRWT, WSTRES, XSTAGE, XST_TP,  !Output
-     &    SeedFrac, VegFrac, CropStatus, REGROW)          !Output
+     &    SeedFrac, VegFrac, CropStatus)                  !Output
          ENDIF
 !	WRITE(999,*) ' DAY=',YRDOY, 'VEG=',VEGFRAC, 'SEED=',SEEDFRAC
       ENDIF
@@ -360,7 +350,7 @@ C--------------------------------------------------------------
      &    STRCOLD, STRESSW, STRHEAT, SUMDTT, SW, SWFAC,   !Input
      &    TAGE, TBASE, TF_GRO, TMAX, TMIN, TSGRWT,        !Input
      &    TURFAC, VegFrac, WSTRES, XSTAGE, XST_TP, YRPLT, !Input
-     &    YRSOW, REGROW,                                  !Input
+     &    YRSOW,                                          !Input
      &    EMAT, FLOODN, PLANTS, RTWT,                     !I/O
      &    AGEFAC, APTNUP, BIOMAS, CANNAA, CANWAA, DYIELD, !Output
      &    GNUP, GPP, GPSM, GRAINN, GRNWT, GRORT,          !Output
@@ -372,8 +362,7 @@ C--------------------------------------------------------------
      &    RWUMX, SEEDNI, SEEDRV, SENESCE,                 !Output
      &    SKERWT, STMWT, STMWTO,                          !Output
      &    STOVER, STOVN, TANC, TGROGRN, TILNO, TOTNUP,    !Output
-     &    CumNUptake, UNH4, UNO3, WTLF, XGNP,             !Output
-     &    MDATE, RHzWT, RHzDTT)                           !Output       ! WP - Added MDATE, RHzWT, RHzDTT
+     &    CumNUptake, UNH4, UNO3, WTLF, XGNP)             !Output
 
 
       FLOODN % NDAT   = NDAT
@@ -384,7 +373,7 @@ C--------------------------------------------------------------
 !***********************************************************************
       ELSEIF (DYNAMIC .EQ. OUTPUT .OR. DYNAMIC .EQ. SEASEND) THEN
 C-----------------------------------------------------------------------
-      CALL RI_GROSUB (CONTROL, ISWITCH,                   !Input  
+       CALL RI_GROSUB (CONTROL, ISWITCH,                   !Input  
      &    CO2, CDTT_TP, CUMDTT, DTT, FERTILE, FIELD,      !Input
      &    FLOOD, FracRts, ISTAGE, ITRANS, LTRANS,         !Input
      &    NEW_PHASE, NH4, NO3, P1, P1T, P3, P4, PHEFAC,   !Input     
@@ -393,7 +382,7 @@ C-----------------------------------------------------------------------
      &    STRCOLD, STRESSW, STRHEAT, SUMDTT, SW, SWFAC,   !Input
      &    TAGE, TBASE, TF_GRO, TMAX, TMIN, TSGRWT,        !Input
      &    TURFAC, VegFrac, WSTRES, XSTAGE, XST_TP, YRPLT, !Input
-     &    YRSOW, REGROW,                                  !Input
+     &    YRSOW,                                          !Input
      &    EMAT, FLOODN, PLANTS, RTWT,                     !I/O
      &    AGEFAC, APTNUP, BIOMAS, CANNAA, CANWAA, DYIELD, !Output
      &    GNUP, GPP, GPSM, GRAINN, GRNWT, GRORT,          !Output
@@ -405,8 +394,7 @@ C-----------------------------------------------------------------------
      &    RWUMX, SEEDNI, SEEDRV, SENESCE,                 !Output
      &    SKERWT, STMWT, STMWTO,                          !Output
      &    STOVER, STOVN, TANC, TGROGRN, TILNO, TOTNUP,    !Output
-     &    CumNUptake, UNH4, UNO3, WTLF, XGNP,             !Output
-     &    MDATE, RHzWT, RHzDTT)                           !Output       ! WP - Added MDATE, RHzWT, RHzDTT
+     &    CumNUptake, UNH4, UNO3, WTLF, XGNP)             !Output
 
       CALL RI_OPGROW (CONTROL, ISWITCH, SOILPROP,
      &    BIOMAS, GPP, GPSM, GRAINN, GRNWT, ISTAGE, LAI,  

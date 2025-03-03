@@ -103,8 +103,7 @@ C=======================================================================
           TGROLF  = TCARBO * 0.650     !0.5
           TGROSTM = TCARBO - TGROLF
           TPLAG   = TGROLF / SLW
-          TPLA    = TPLA   + TPLAG
-      WRITE(*,*) 'SLW=',SLW,"TPLA=",TPLA,'TPLAG=',TPLAG       !JT/US
+          TPLA    = TPLA   + TPLAG      
       
         CASE (2)
           TSTAGE  = 0   !1.0    + 0.5*SIND

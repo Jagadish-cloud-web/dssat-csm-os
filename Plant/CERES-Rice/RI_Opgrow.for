@@ -54,8 +54,7 @@ C-----------------------------------------------------------------------
       REAL    VSTAGE, DTT
       REAL    WTNUP,WTNCAN,WTNLF,WTNST,WTNSD,WTNSH,WTNFX,WTNRT
 
-      REAL CUMSENSURF, CUMSENSOIL, CUMSENSURFN, CUMSENSOILN  
-
+      REAL CUMSENSURF, CUMSENSOIL, CUMSENSURFN, CUMSENSOILN 
 C
 C     Growth variables
 C
@@ -251,7 +250,7 @@ C-----------------------------------------------------------------------
            SLA = 0.0
          ENDIF
          
-      WRITE(*,*) 'SLAPLTGRO=',SLA, 'LeafWT=',LFWT, 'LAI=',LAI       
+!      WRITE(*,*) 'SLAPLTGRO=',SLA, 'LeafWT=',LFWT, 'LAI=',LAI       
 
         SEEDNO = GPSM
 !        PODWT  = PANWT
@@ -318,6 +317,7 @@ C-----------------------------------------------------------------------
            ELSE
              PCNL = 0.0
           ENDIF
+!          WRITE(*,*) 'YRDOY',YRDOY,'PCNL',Leaf N  ! added by JT
           IF (STMWT .GT. 0.0) THEN
              PCNST = WTNST/(STMWT * PLTPOP) * 100.0
            ELSE
@@ -340,8 +340,13 @@ C-----------------------------------------------------------------------
              PCNGRN = WTNSD / (SDWT * PLTPOP) * 100.0
            ELSE
              PCNGRN = 0.0
-          ENDIF
-
+           ENDIF
+!          WRITE (*,*) "WTNLF:",WTNLF,"WTNST:",WTNST,"GrainN:",GRAINN
+!          WRITE (*,*) "VEGN:",PCNVEG,"LeafN:",PCNL,"StemN:",PCNST 
+!          WRITE (*,*) "CNAD:",WTNCAN,"VNAD:",WTNVEG
+!          WRITE (*,*) "Pcnrt:",PCNRT,"RootN:",ROOTN,"Wtnrt:",WTNRT
+!          WRITE (*,*) "STOVN:",STOVN,"GRN:",GRAINN,"CUMNUP:",CUMNUPTAKE
+           
           WRITE (NOUTPN,310)YEAR, DOY, DAS, DAP,
      &      (WTNCAN*10.0), (WTNSD*10.0), (WTNVEG*10.0), PCNGRN, PCNVEG,
 !    &      (WTNUP*10.0), (WTNLF*10.0), (WTNST*10.0), PCNL,

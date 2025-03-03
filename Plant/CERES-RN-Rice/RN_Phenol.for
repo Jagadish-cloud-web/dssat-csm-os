@@ -17,16 +17,16 @@ C=======================================================================
 
       SUBROUTINE RN_PHENOL (CONTROL, ISWITCH, 
      &    AGEFAC, BIOMAS, DAYL, LEAFNO, NSTRES, PHEFAC,   !Input
-     &    PHINT, SDEPTH, SOILPROP, SRAD, SW, DUL, SWFAC,  !Input  WP - Added DUL
+     &    PHINT, SDEPTH, SOILPROP, SRAD, SW, DUL, SWFAC,  !Input  Added DUL
      &    TGROGRN, TILNO, TMAX, TMIN, TWILEN, TURFAC,     !Input
-     &    YRPLT,FLOODWAT, LAI, RHzWT, RHzDTT,             !Input  WP - Added RHzWT, RHzDTT
+     &    YRPLT,FLOODWAT, LAI, RHzWT, RHzDTT,             !Input  Added RHzWT, RHzDTT
      &    CUMDTT, EMAT, ISDATE, PLANTS, RTDEP, YRSOW,     !I/O
      &    CDTT_TP, DTT, FERTILE, FIELD, ISTAGE,           !Output
      &    ITRANS, LTRANS, MDATE, NDAT, NEW_PHASE, P1, P1T,!Output
      &    P3, P4, SDTT_TP, SEEDNI, SI3, STGDOY, STNAME,   !Output
      &    STRCOLD, STRESSW, STRHEAT, SUMDTT, TAGE,        !Output
      &    TBASE, TF_GRO, TSGRWT, WSTRES, XSTAGE, XST_TP,  !Output
-     &    SeedFrac, VegFrac, CropStatus, REGROW)          !Output   WP Added REGROW
+     &    SeedFrac, VegFrac, CropStatus, REGROW)          !Output  Added REGROW
 
 !-----------------------------------------------------------------------
       USE ModuleDefs     !Definitions of constructed variable types, 
@@ -67,7 +67,7 @@ C=======================================================================
       REAL TURFAC, WSTRES, XNTI, XSTAGE, XST_TP
 
       REAL SI1(6), SI2(6), SI3(6), SI4(6)
-      REAL DLAYR(NL), LL(NL), SW(NL), DUL(NL)      ! WP - Added DUL
+      REAL DLAYR(NL), LL(NL), SW(NL), DUL(NL)      ! Added DUL
 
       LOGICAL FIELD, LTRANS, PI_TF, PRESOW, TF_GRO, NEW_PHASE, BUNDED
 
@@ -182,7 +182,7 @@ C=======================================================================
 
       NEW_PHASE = .FALSE.
 
-! For Perenial Rice control   ! WP
+! For Perenial Rice control   
       RHzDTT = 0.0
       RHzDORM = 50
       SW_RATE = 0.8
@@ -472,7 +472,7 @@ C=======================================================================
           RETURN
 
 !-----------------------------------------------------------------------
-        CASE (0)      !Regrowth - Rhizome period      ! WP
+        CASE (0)      !Regrowth - Rhizome period      
 
             IF(TEMPM .GT. 5.0) THEN              !original was 5.0; want to change to 4.0
                RHzDTT = RHzDTT + DTT
@@ -485,7 +485,8 @@ C=======================================================================
      &        (SW_RATE * DUL(1))) THEN
                ISTAGE = 1            
                REGROW = REGROW + 1
-               WRITE(*,*) 'ISTAGE=',ISTAGE, 'Regrow=',REGROW
+!               WRITE(*,*) 'SW(1)=',SW, 'DUL(1)=',DUL
+!               WRITE(*,*) 'ISTAGE=',ISTAGE, 'Regrow=',REGROW
             ELSE
                RETURN
             ENDIF
@@ -849,7 +850,7 @@ C=======================================================================
           ISTAGE = 20      !HARVEST
           CUMDTT = 0.0
           DTT    = 0.0
-          NDAT   = 0          ! WP - NDAT initialized to 0 for Perennial crop
+          NDAT   = 0          ! NDAT initialized to 0 for Perennial crop
           !END OF PHASEI STUFF
           STGDOY(ISTAGE) = YRDOY
 
@@ -899,7 +900,7 @@ C  Revision history
 C
 C  05/07/2002 CHP Written
 C-----------------------------------------------------------------------
-C  Called : RI_PHENOL
+C  Called : RN_PHENOL
 C=======================================================================
 
       SUBROUTINE RI_Stress (ISTAGE, ISWWAT, ISWNIT,
@@ -945,7 +946,7 @@ C  Revision history
 C
 C  05/07/2002 CHP Written
 C-----------------------------------------------------------------------
-C  Called : RI_PHENOL
+C  Called : RN_PHENOL
 C=======================================================================
 
       SUBROUTINE PhaseInit (CNSD1, CNSD2, CSD1, CSD2, 
@@ -983,7 +984,7 @@ C
 C  05/07/2002 CHP Written
 C  02/19/2003 CHP Converted dates to YRDOY format
 C-----------------------------------------------------------------------
-C  Called : RI_PHENOL
+C  Called : RN_PHENOL
 C=======================================================================
       SUBROUTINE RiceInit(
      &    PLME, TAGE, YRDOY, YRPLT, YRSIM, YRSOW,         !Input
